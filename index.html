@@ -32,25 +32,25 @@
     <!-- End Google Tag Manager (noscript) -->
   
     <h1>Hello - Test</h1>
-    <h2> is code updating?</h2>
+    <h2>Is code updating?</h2>
     <button onclick="
       dataLayer.push({
         'event': 'button_click',
         'pagePath': 'https://httpbin.org/get?key=key&value=value',
         'key': 'key',
         'value': 'value'
-      });" 
+      });
+      
+      fetch('https://httpbin.org/get?key=key&value=value')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      });
+      " 
       id="click_button">
       GTM Test
     </button>
     
   </body>
   
-  <script>
-    fetch('https://httpbin.org/get?key=key&value=value')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      });
-  </script>
 </html>
