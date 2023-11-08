@@ -36,9 +36,9 @@
     <button onclick="
       dataLayer.push({
         'event': 'button_click',
-        'pagePath': 'https://httpbin.org/get?key=${Object.keys(dataLayer)[0]["key"]}&value=${Object.keys(dataLayer)[0]["value"]}',
+       // 'pagePath': 'https://httpbin.org/get?key=' + ${Object.keys(dataLayer)[0][key]} + '&value=' + ${Object.keys(dataLayer)[0][value]}
       });
-      console.log(dataLayer);
+      console.log(${Object.keys(dataLayer)[0][key]});
       " 
       id="click_button">
       GTM Test
