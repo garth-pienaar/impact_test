@@ -1,45 +1,56 @@
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv='cache-control' content='no-cache'> 
-  <meta http-equiv='expires' content='0'> 
-  <meta http-equiv='pragma' content='no-cache'>
-  <title>Testing GTM data layer</title>
-  <meta name="description" content="Is my content updating...">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Testing GTM data layer</title>
+    <meta name="description" content="Is my content updating...">
+    
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'key': 'key',
+        'value': 'value'
+      });
+    </script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KKFTQX84');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKFTQX84"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
+    <h1>Hello - Test</h1>
+    <h2> is code updating?</h2>
+    <button onclick="
+      dataLayer.push({
+        'event': 'button_click',
+        'pagePath': 'https://httpbin.org/get?key=key&value=value',
+        'key': 'key',
+        'value': 'value'
+      });" 
+      id="click_button">
+      GTM Test
+    </button>
+    
+  </body>
   
   <script>
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      'key': 'key',
-      'value': 'value'
-    });
+    fetch('https://api.example.com/comments')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.comments);
+      });
   </script>
-  
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KKFTQX84');</script>
-  <!-- End Google Tag Manager -->
-</head>
-
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKFTQX84"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <h1>Hello - Test</h1>
-  <h2> is code updating?</h2>
-  <button onclick="
-    dataLayer.push({
-      'event': 'button_click',
-      'pagePath': 'https://httpbin.org/get?key=key&value=value',
-      'key': 'key',
-      'value': 'value'
-    });" 
-    id="click_button">
-    GTM Test
-  </button>
-  
-</body>
+</html>
