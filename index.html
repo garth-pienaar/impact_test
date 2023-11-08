@@ -36,9 +36,19 @@
     <button onclick="
       dataLayer.push({
         'event': 'button_click',
-        'pagePath': 'https://httpbin.org/get?' + dataLayer[0]['key'] + '=' + dataLayer[0]['key'] + '&' + dataLayer[0]['value'] + '=' + dataLayer[0]['value']
+        'pagePath': 'https://httpbin.org/get?' + dataLayer[0]['key'] + '=' + dataLayer[0]['key'] + '&' + dataLayer[0]['value'] + '=' + dataLayer[0]['value'],
       });
-      console.log(dataLayer);
+      
+      fetch('https://httpbin.org/get?' + new URLSearchParams({
+          key: dataLayer[0]['key'],
+          value: dataLayer[0]['value'],
+      }))
+        .then(response => response.json())
+        .then(data => {
+        console.log(data);
+      }).catch(function (error) {
+        console.log('request failed', error)
+      });
       " 
       id="click_button">
       GTM Test
