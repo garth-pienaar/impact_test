@@ -8,6 +8,10 @@
   
   <script>
     window.dataLayer = window.dataLayer || [];
+    window.datalayer.push({
+      'key': 'key',
+      'value': 'value'
+    });
   </script>
   
   <!-- Google Tag Manager -->
@@ -27,8 +31,15 @@
 
   <h1>Hello - Test</h1>
   <h2> is code updating?</h2>
-  <a href="https://httpbin.org/?key=key&value=value">
-    <button id="click_button">GTM Test</button>
-  </a>
+  <button onclick="
+    dataLayer.push({
+      'event': 'button_click',
+      'pagePath': 'https://httpbin.org/?key=key&value=value',
+      'key': 'key',
+      'value': 'value'
+    });" 
+    id="click_button">
+    GTM Test
+  </button>
   
 </body>
