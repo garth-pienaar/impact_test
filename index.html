@@ -39,9 +39,7 @@
         'pagePath': 'https://httpbin.org/get?key=key&value=value',
         'key': 'key',
         'value': 'value'
-      });
-      
-      fetch('https://httpbin.org/get?key=key&value=value')
+      })
       .then(response => response.json())
       .then(data => {
         console.log(data);
