@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Below meta tag block was added because github pages stopped updating for hours. Solution was Step 1 - set meta tags to no-cache. Step 2 - Test, no response. Step 3 - set repo to private and back to public. -->
     <meta charset="utf-8">
     <meta http-equiv='cache-control' content='no-cache'> 
     <meta http-equiv='expires' content='0'> 
     <meta http-equiv='pragma' content='no-cache'>
+
     <title>Testing GTM data layer</title>
     <meta name="description" content="Is my content updating...">
-    
+    <!-- Tools and services used for this example were kept as simple as possible raw HTML + JS, basic text editor (sublime free version), github & github pages -->
+
     <script>
       window.dataLayer = window.dataLayer || [];
-      /*dataLayer.push({
+      /* This example pushes datalayer vars through JS in the HTML code */
+      dataLayer.push({
         'key': 'key',
         'value': 'value'
-      });*/
+      });
     </script>
     
     <!-- Google Tag Manager -->
@@ -21,7 +25,8 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KKFTQX84');</script>
+    })(window,document,'script','dataLayer','GTM-KKFTQX84');
+  </script>
     <!-- End Google Tag Manager -->
   </head>
   
@@ -30,15 +35,20 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKFTQX84"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-  
-    <h1>Hello - Test</h1>
-    <h2>Is code updating?</h2>
+    <!-- The GTM scripts have fired and DOM is loaded. We can add "if" or "try-catch" to check of existance of attributes[] in custom HTML-JS created in GTM. I chose to keep the code simple -->    
+    <h1>Hello - Page Heading</h1>
+    <h2>Page Subheading</h2>
     <button onclick="
+      /*
+      Sticking with the theme, we're using simplest method of pushing data through JS in the code but re-using existing vars
+      I didn't create a var or constant for the dataLayer values since we're only using one index file. A modular OOP design with separate JS files containing JS functions or backend methods should be used for big roll outs. Overkill for such a small example. 
+      */
       dataLayer.push({
         'event': 'button_click',
         'pagePath': 'https://httpbin.org/get?' + dataLayer[0]['key'] + '=' + dataLayer[0]['key'] + '&' + dataLayer[0]['value'] + '=' + dataLayer[0]['value'],
       });
       
+      /* fetching API response from same path as datalayer push. A separate call - My understanding was to log GET response and not GTM response */
       fetch('https://httpbin.org/get?' + new URLSearchParams({
           key: dataLayer[0]['key'],
           value: dataLayer[0]['value'],
@@ -47,6 +57,7 @@
         .then(data => {
         console.log(data);
       }).catch(function (error) {
+        /* try catch could be used to resubmit call on fail, including datalayer push */
         console.log('request failed', error)
       });
       " 
